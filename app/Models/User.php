@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -19,6 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'avatar',
         'password',
     ];
 
@@ -54,6 +56,7 @@ class User extends Authenticatable
      * @param array|string $roles
      * @return bool
      */
+ 
     public function authorizeRoles($roles)
     {
         if ($this->hasAnyRole($roles)) {
@@ -68,6 +71,7 @@ class User extends Authenticatable
      * @param array|string $roles
      * @return bool
      */
+  
     public function hasAnyRole($roles)
     {
         if (is_array($roles)) {
@@ -90,6 +94,7 @@ class User extends Authenticatable
      * @param string $role
      * @return bool
      */
+
     public function hasRole($role)
     {
         return null !== $this->roles()->where('name', $role)->first();
