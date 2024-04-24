@@ -32,6 +32,9 @@ class Pedido extends Model
      */
     protected $fillable = ['Nombre_Proveedor', 'Fecha_de_Pedido', 'Producto_pedido', 'Cantidad_pedida', 'estado'];
 
-
+    public function asignacionGrupos()
+    {
+        return $this->hasMany('App\Models\AsignacionGrupo', 'pedido_id');
+    }
 
 }

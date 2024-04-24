@@ -31,6 +31,10 @@ class Producto extends Model
      */
     protected $fillable = ['Nombre_Producto', 'Descripcion', 'Precio', 'Existencias'];
 
+    public function asignacionGrupos()
+    {
+        return $this->hasMany('App\Models\AsignacionGrupo', 'producto_id');
+    }
 
 
 }

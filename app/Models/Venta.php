@@ -33,6 +33,9 @@ class Venta extends Model
      */
     protected $fillable = ['ID_Cliente', 'Nombre_Cliente', 'Fecha_de_Venta', 'Cantidad', 'Precio', 'Total'];
 
-
+    public function asignacionGrupos()
+    {
+        return $this->hasMany('App\Models\AsignacionGrupo', 'venta_id');
+    }
 
 }

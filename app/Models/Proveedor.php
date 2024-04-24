@@ -34,6 +34,9 @@ class Proveedor extends Model
      */
     protected $fillable = ['Nombre_Proveedor', 'Nombre_Empresa', 'Nit', 'Ciudad', 'Telefono', 'Email', 'Producto'];
 
-
+    public function asignacionGrupos()
+    {
+        return $this->hasMany('App\Models\AsignacionGrupo', 'proveedor_id');
+    }
 
 }

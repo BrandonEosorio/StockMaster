@@ -1,11 +1,19 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de producto</title>
+    <!-- Include your stylesheet here -->
+    <link rel="stylesheet" href="{{ public_path('dist/css/adminlte.min.css') }}">
+</head>
+</head>
+<body>
+    
+    
+<h4 class="text-center">  StockMaster </h4> 
 
-@section('template_title')
-    Producto
-@endsection
-
-@section('content')
-    <div class="container-fluid">
+<div class="container-fluid">
         <dv class="row">
             <div class="col-sm-12">
                 <div class="card">
@@ -49,15 +57,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($productos as $producto)
+                                @foreach ($productos as $producto)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
+                                            
                                             
 											<td>{{ $producto->Nombre_Producto }}</td>
 											<td>{{ $producto->Descripcion }}</td>
 											<td>{{ $producto->Precio }}</td>
 											<td>{{ $producto->Existencias }}</td>
-
                                             <td>
                                                 <form action="{{ route('productos.destroy',$producto->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('productos.show',$producto->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
@@ -74,8 +81,6 @@
                         </div>
                     </div>
                 </div>
-                {!! $productos->links() !!}
-            </div>
-        </div>
-    </div>
-@endsection
+</body>
+</html>
+
