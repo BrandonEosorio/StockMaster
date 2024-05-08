@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Ventas
+    Clientes
 @endsection
 
 @section('content')
@@ -13,11 +13,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Ventas') }}
+                                {{ __('Clientes') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('ventas.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('clientes.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -37,31 +37,23 @@
                                         <th>No</th>
                                         
 									<th >Nombre Cliente</th>
-									<th >Id Cliente</th>
-									<th >Fecha De Venta</th>
-									<th >Cantidad</th>
-									<th >Precio</th>
-									<th >Total</th>
+									<th >Email</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($ventas as $venta)
+                                    @foreach ($clientes as $cliente)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-										<td >{{ $venta->cliente->Nombre_Cliente}}</td>
-										<td >{{ $venta->ID_Cliente }}</td>
-										<td >{{ $venta->Fecha_de_Venta }}</td>
-										<td >{{ $venta->Cantidad }}</td>
-										<td >{{ $venta->Precio }}</td>
-										<td >{{ $venta->Total }}</td>
+										<td >{{ $cliente->Nombre_cliente }}</td>
+										<td >{{ $cliente->Email }}</td>
 
                                             <td>
-                                                <form action="{{ route('ventas.destroy', $venta->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('ventas.show', $venta->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('ventas.edit', $venta->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('clientes.destroy', $cliente->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('clientes.show', $cliente->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('clientes.edit', $cliente->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
@@ -74,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $ventas->withQueryString()->links() !!}
+                {!! $clientes->withQueryString()->links() !!}
             </div>
         </div>
     </div>

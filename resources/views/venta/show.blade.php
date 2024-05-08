@@ -20,30 +20,30 @@
 
                     <div class="card-body bg-white">
                         
-                        <div class="form-group mb-2 mb20">
-                            <strong>Id Cliente:</strong>
-                            {{ $venta->ID_Cliente }}
-                        </div>
-                        <div class="form-group mb-2 mb20">
-                            <strong>Nombre Cliente:</strong>
-                            {{ $venta->Nombre_Cliente }}
-                        </div>
-                        <div class="form-group mb-2 mb20">
-                            <strong>Fecha De Venta:</strong>
-                            {{ $venta->Fecha_de_Venta }}
-                        </div>
-                        <div class="form-group mb-2 mb20">
-                            <strong>Cantidad:</strong>
-                            {{ $venta->Cantidad }}
-                        </div>
-                        <div class="form-group mb-2 mb20">
-                            <strong>Precio:</strong>
-                            {{ $venta->Precio }}
-                        </div>
-                        <div class="form-group mb-2 mb20">
-                            <strong>Total:</strong>
-                            {{ $venta->Total }}
-                        </div>
+                                <div class="form-group mb-2 mb20">
+                                    <strong>Nombre Cliente:</strong>
+                                    {{ $venta->Nombre_Cliente }}
+                                </div>
+                                <div class="form-group mb-2 mb20">
+                                    <strong>Id Cliente:</strong>
+                                    {{ $venta->ID_Cliente }}
+                                </div>
+                                <div class="form-group mb-2 mb20">
+                                    <strong>Fecha De Venta:</strong>
+                                    {{ $venta->Fecha_de_Venta }}
+                                </div>
+                                <div class="form-group mb-2 mb20">
+                                    <strong>Cantidad:</strong>
+                                    {{ $venta->Cantidad }}
+                                </div>
+                                <div class="form-group mb-2 mb20">
+                                    <strong>Precio:</strong>
+                                    {{ $venta->Precio }}
+                                </div>
+                                <div class="form-group mb-2 mb20">
+                                    <strong>Total:</strong>
+                                    {{ $venta->Total }}
+                                </div>
 
                     </div>
                 </div>

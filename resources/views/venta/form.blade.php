@@ -1,16 +1,26 @@
 <div class="row padding-1 p-1">
     <div class="col-md-12">
         
-        <div class="form-group mb-2 mb20">
+    <div class="form-group mb-2 mb20">
             <label for="i_d__cliente" class="form-label">{{ __('Id Cliente') }}</label>
-            <input type="text" name="ID_Cliente" class="form-control @error('ID_Cliente') is-invalid @enderror" value="{{ old('ID_Cliente', $venta?->ID_Cliente) }}" id="i_d__cliente" placeholder="Id Cliente">
+            
             {!! $errors->first('ID_Cliente', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+            <select name="ID_Cliente" id="ID_Cliente" class="form-control selectpicker" datalivesearch="true"
+ required>
+ <option value="" disabled selected>Cliente:</option>
+ @foreach($clientes as $Cli)
+ <option value="{{$Cli->id}}">{{ $Cli->id }} </option>
+ @endforeach
+ </select>
+      
         </div>
+
         <div class="form-group mb-2 mb20">
             <label for="nombre__cliente" class="form-label">{{ __('Nombre Cliente') }}</label>
             <input type="text" name="Nombre_Cliente" class="form-control @error('Nombre_Cliente') is-invalid @enderror" value="{{ old('Nombre_Cliente', $venta?->Nombre_Cliente) }}" id="nombre__cliente" placeholder="Nombre Cliente">
             {!! $errors->first('Nombre_Cliente', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
+
         <div class="form-group mb-2 mb20">
             <label for="fecha_de__venta" class="form-label">{{ __('Fecha De Venta') }}</label>
             <input type="text" name="Fecha_de_Venta" class="form-control @error('Fecha_de_Venta') is-invalid @enderror" value="{{ old('Fecha_de_Venta', $venta?->Fecha_de_Venta) }}" id="fecha_de__venta" placeholder="Fecha De Venta">

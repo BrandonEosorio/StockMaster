@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
  * Class Venta
  *
  * @property $id
- * @property $ID_Cliente
  * @property $Nombre_Cliente
+ * @property $ID_Cliente
  * @property $Fecha_de_Venta
  * @property $Cantidad
  * @property $Precio
@@ -17,25 +17,29 @@ use Illuminate\Database\Eloquent\Model;
  * @property $created_at
  * @property $updated_at
  *
+ * @property Cliente $cliente
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
 class Venta extends Model
 {
     
-
     protected $perPage = 20;
 
     /**
-     * Attributes that should be mass-assignable.
+     * The attributes that are mass assignable.
      *
-     * @var array
+     * @var array<int, string>
      */
-    protected $fillable = ['ID_Cliente', 'Nombre_Cliente', 'Fecha_de_Venta', 'Cantidad', 'Precio', 'Total'];
+    protected $fillable = ['Nombre_Cliente', 'ID_Cliente', 'Fecha_de_Venta', 'Cantidad', 'Precio', 'Total'];
 
-    public function asignacionGrupos()
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function cliente()
     {
-        return $this->hasMany('App\Models\AsignacionGrupo', 'venta_id');
+        return $this->belongsTo(\App\Models\Cliente::class, 'ID_Cliente', 'id');
     }
-
+    
 }

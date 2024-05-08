@@ -3,49 +3,53 @@
 namespace App\Http\Controllers;
 
 use App\Models\Venta;
-use App\Http\Requests\VentaRequest;
+use App\Models\Cliente;
 
-/**
- * Class VentaController
- * @package App\Http\Controllers
- */
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use App\Http\Requests\VentaRequest;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\View\View;
+
 class VentaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request): View
     {
         $ventas = Venta::paginate();
 
         return view('venta.index', compact('ventas'))
-            ->with('i', (request()->input('page', 1) - 1) * $ventas->perPage());
+            ->with('i', ($request->input('page', 1) - 1) * $ventas->perPage());
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
         $venta = new Venta();
-        return view('venta.create', compact('venta'));
+        $clientes = Cliente::select('Nombre_Cliente','id') ->get();
+
+        return view('venta.create', compact('venta','clientes'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(VentaRequest $request)
+    public function store(VentaRequest $request): RedirectResponse
     {
         Venta::create($request->validated());
 
-        return redirect()->route('ventas.index')
+        return Redirect::route('ventas.index')
             ->with('success', 'Venta created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show($id): View
     {
         $venta = Venta::find($id);
 
@@ -55,7 +59,7 @@ class VentaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit($id): View
     {
         $venta = Venta::find($id);
 
@@ -65,19 +69,36 @@ class VentaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(VentaRequest $request, Venta $venta)
+    public function update(VentaRequest $request, Venta $venta): RedirectResponse
     {
         $venta->update($request->validated());
 
-        return redirect()->route('ventas.index')
+        return Redirect::route('ventas.index')
             ->with('success', 'Venta updated successfully');
     }
 
-    public function destroy($id)
+    public function destroy($id): RedirectResponse
     {
         Venta::find($id)->delete();
 
-        return redirect()->route('ventas.index')
+        return Redirect::route('ventas.index')
             ->with('success', 'Venta deleted successfully');
     }
+
+public function buscarCedula(Request $request)
+{
+    $cedula = $request->get('cedula');
+    $venta = Venta::where('cedula', $cedula)->first();
+
+    if ($venta) {
+        return response()->json([
+            'id' => $venta->id,
+            'nombre_cliente' => $venta->nombre_cliente,
+            // Otros campos de la venta que desees retornar
+        ]);
+    } else {
+        $mensajeError = "La cédula no existe en la base de datos";
+        return response()->json(['error' => $mensajeError], 404);
+    }
+}
 }

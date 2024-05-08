@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('ventas', function (Blueprint $table) {
             $table->id();
-            $table->string ('ID_Cliente');
             $table->string ('Nombre_Cliente');
+            $table->unsignedBigInteger ('ID_Cliente');
             $table->date ('Fecha_de_Venta');
             $table->integer ('Cantidad');
             $table->double ('Precio', 8, 2);
             $table->double ('Total', 8, 2);
+            $table->foreign('ID_Cliente')->references('id')->on('clientes')->onDelete('cascade');
             $table->timestamps();
         });
     }

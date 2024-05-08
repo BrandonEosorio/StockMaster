@@ -22,10 +22,15 @@
             {!! $errors->first('Cantidad_pedida', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
-            <label for="estado" class="form-label">{{ __('Estado') }}</label>
-            <input type="text" name="estado" class="form-control @error('estado') is-invalid @enderror" value="{{ old('estado', $pedido?->estado) }}" id="estado" placeholder="Estado">
-            {!! $errors->first('estado', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
-        </div>
+    <label for="estado" class="form-label">{{ __('Estado') }}</label>
+    <select name="estado" class="form-control @error('estado') is-invalid @enderror" id="estado">
+        <option value="Pendiente" {{ old('estado', $pedido?->estado) === 'Pendiente' ? 'selected' : '' }}>Pendiente</option>
+        <option value="Enviado" {{ old('estado', $pedido?->estado) === 'En espera' ? 'selected' : '' }}>Enviado</option>
+        <option value="Recibido" {{ old('estado', $pedido?->estado) === 'Entregado' ? 'selected' : '' }}>Recibido</option>
+
+    </select>
+    {!! $errors->first('estado', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+</div>
 
     </div>
     <div class="col-md-12 mt20 mt-2">
