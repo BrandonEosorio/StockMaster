@@ -74,7 +74,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $ventas->withQueryString()->links() !!}
+               
             </div>
         </div>
     </div>

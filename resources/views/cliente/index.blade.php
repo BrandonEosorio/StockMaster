@@ -36,7 +36,7 @@
                                     <tr>
                                         <th>No</th>
                                         
-									<th >Nombre Cliente</th>
+									<th >Nombre Clientessss</th>
 									<th >Email</th>
 
                                         <th></th>

@@ -16,14 +16,17 @@ class VentaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request): View
+    public function index()
     {
-        $ventas = Venta::paginate();
+    
+        $ventas = Venta::join('clientes', 'ventas.ID_Cliente', '=', 'clientes.id')
+        ->select('clientes.nombre_cliente as nombre_cliente', 'ventas.*')
+        ->get();
 
-        return view('venta.index', compact('ventas'))
-            ->with('i', ($request->input('page', 1) - 1) * $ventas->perPage());
+   
+    
+    return view('venta.index',compact('ventas'));
     }
-
     /**
      * Show the form for creating a new resource.
      */
