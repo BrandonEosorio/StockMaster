@@ -161,6 +161,7 @@ return [
          */
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
+        Darryldecode\Cart\CartServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
         Illuminate\Cache\CacheServiceProvider::class,
         Illuminate\Foundation\Providers\ConsoleSupportServiceProvider::class,
@@ -212,5 +213,6 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         'PDF' => 'Barryvdh\DomPDF\Facade',
     ])->toArray(),
+    'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
 
 ];

@@ -31,3 +31,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('ventas/buscarCliente', [VentaController::class, 'buscarCliente'])->name('ventas.buscarCliente');
 Route::get('ventas/buscarProducto', [VentaController::class, 'buscarProducto'])->name('ventas.buscarProducto');
+
+Route::get('/', [App\Http\Controllers\CartController::class, 'shop'])->name('shop');
+Route::get('/carrito', [App\Http\Controllers\CarritoController::class, 'cart'])->name('cart.index');
+Route::post('/add', [App\Http\Controllers\CartController::class, 'add'])->name('cart.store');
+Route::post('/update', [App\Http\Controllers\CartController::class, 'update'])->name('cart.update');
+Route::post('/remove', [App\Http\Controllers\CartController::class, 'remove'])->name('cart.remove');
+Route::post('/clear', [App\Http\Controllers\CartController::class, 'clear'])->name('cart.clear');
